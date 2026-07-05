@@ -77,7 +77,7 @@
 
   h1, h2, h3 { font-family: var(--serif); font-weight: 500; letter-spacing: -0.01em; color: var(--ink); }
 
-  /* ============ Nav ============ */
+  
 
   header.site{
     position: sticky;
@@ -122,7 +122,7 @@
   }
   nav.links a:hover::after{ width: 100%; }
 
-  /* mobile nav via checkbox hack */
+  
   .menu-toggle{ display: none; }
   .burger{
     display: none;
@@ -160,7 +160,7 @@
     .burger{ display: flex; }
   }
 
-  /* ============ Hero ============ */
+  
 
   .hero{
     padding-top: clamp(64px, 12vh, 140px);
@@ -171,17 +171,26 @@
   .hero-grid{
     display: grid;
     grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "eyebrow meta"
+      "h1      meta"
+      "role    meta"
+      "cta     meta";
     gap: 40px;
     align-items: end;
   }
 
+  .hero .eyebrow{ grid-area: eyebrow; }
+
   .hero h1{
+    grid-area: h1;
     font-size: clamp(2.6rem, 6vw, 4.6rem);
     line-height: 1.05;
     max-width: 14ch;
   }
 
   .hero .role{
+    grid-area: role;
     font-family: var(--mono);
     font-size: 0.95rem;
     color: var(--ink-soft);
@@ -192,6 +201,8 @@
   .hero .role strong{ color: var(--ink); font-weight: 500; }
 
   .hero-meta{
+    grid-area: meta;
+    align-self: end;
     text-align: right;
     font-family: var(--mono);
     font-size: 0.78rem;
@@ -200,10 +211,29 @@
   }
 
   .cta-row{
+    grid-area: cta;
     display: flex;
     gap: 16px;
     margin-top: 40px;
     flex-wrap: wrap;
+  }
+
+  @media (max-width: 720px){
+    .hero-grid{
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "eyebrow"
+        "h1"
+        "role"
+        "meta"
+        "cta";
+      gap: 0;
+    }
+    .hero-meta{
+      text-align: left;
+      margin-top: 22px;
+      align-self: start;
+    }
   }
 
   .btn{
@@ -219,7 +249,7 @@
   .btn.ghost{ border-color: var(--line); color: var(--ink-soft); }
   .btn.ghost:hover{ border-color: var(--ink); color: var(--ink); }
 
-  /* margin rule / datum line, signature element */
+  
   .datum{
     position: relative;
     padding-left: 28px;
@@ -240,7 +270,7 @@
     background: var(--accent);
   }
 
-  /* ============ Section shell ============ */
+ 
 
   section{
     padding: clamp(56px, 9vh, 100px) 0;
@@ -260,7 +290,7 @@
     .section-head{ grid-template-columns: 1fr; gap: 16px; }
   }
 
-  /* ============ About ============ */
+  
 
   .about-body{
     display: grid;
@@ -299,7 +329,7 @@
     .about-body{ grid-template-columns: 1fr; }
   }
 
-  /* ============ Skills ============ */
+  
 
   .skill-cols{
     display: grid;
@@ -334,7 +364,7 @@
     .skill-cols{ grid-template-columns: 1fr; }
   }
 
-  /* ============ Projects ============ */
+  
 
   .project{
     display: grid;
@@ -467,7 +497,7 @@
     .contact-grid{ grid-template-columns: 1fr; }
   }
 
-  /* ============ Footer ============ */
+  /
 
   footer{
     padding: 32px var(--pad);
@@ -511,7 +541,7 @@
 
   <header class="site">
     <div class="wrap nav-inner">
-      <a href="#top" class="brand">Araf <span>Islam Sarkar</span></a>
+      <a href="#top" class="brand"><span>Araf </span>Islam Sarkar</a>
 
       <input type="checkbox" id="menu-toggle" class="menu-toggle">
       <label for="menu-toggle" class="burger" aria-label="Toggle menu">
@@ -529,38 +559,33 @@
   </header>
 
   <main id="top">
-
-    <!-- HERO -->
     <section class="hero" style="border-top:none;">
       <div class="wrap">
         <div class="hero-grid">
-          <div>
-            <div class="eyebrow">home</div>
-            <h1>Building systems<br>from circuits<br>to software.</h1>
-            <p class="role">
-              <strong>Computer Science student</strong> at IUBAT, working across
-              programming, electrical engineering, and applied mathematics.
-              Currently deep in data structures, digital logic, and discrete proofs.
-            </p>
-            <div class="cta-row">
-              <a href="#projects" class="btn primary">View projects</a>
-              <a href="#contact" class="btn ghost">Get in touch</a>
-            </div>
-          </div>
+          <div class="eyebrow">Home</div>
+          <h1>Building systems<br>from circuits<br>to software.</h1>
+          <p class="role">
+            <strong>Computer Science student</strong> at IUBAT, working across
+            programming, electrical engineering, and applied mathematics.
+            Currently deep in data structures, digital logic, and discrete proofs.
+          </p>
           <div class="hero-meta">
             Dhaka, Bangladesh<br>
             B.Sc. Computer Science<br>
             IUBAT — in progress
           </div>
+          <div class="cta-row">
+            <a href="#projects" class="btn primary">View projects</a>
+            <a href="#contact" class="btn ghost">Get in touch</a>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ABOUT -->
     <section id="about">
       <div class="wrap">
         <div class="section-head">
-          <div class="eyebrow">about</div>
+          <div class="eyebrow">About</div>
           <h2>A little about how I work</h2>
         </div>
         <div class="about-body">
@@ -590,11 +615,11 @@
       </div>
     </section>
 
-    <!-- SKILLS -->
+
     <section id="skills">
       <div class="wrap">
         <div class="section-head">
-          <div class="eyebrow">skills</div>
+          <div class="eyebrow">Skills</div>
           <h2>What I bring to the table</h2>
         </div>
         <div class="skill-cols">
@@ -629,11 +654,10 @@
       </div>
     </section>
 
-    <!-- PROJECTS -->
     <section id="projects">
       <div class="wrap">
         <div class="section-head">
-          <div class="eyebrow">projects</div>
+          <div class="eyebrow">Projects</div>
           <h2>Selected work</h2>
         </div>
 
@@ -683,7 +707,7 @@
       </div>
     </section>
 
-    <!-- EDUCATION -->
+    
     <section id="education">
       <div class="wrap">
         <div class="section-head">
@@ -727,7 +751,7 @@
       </div>
     </section>
 
-    <!-- CONTACT -->
+    
     <section id="contact">
       <div class="wrap">
         <div class="contact-grid">
@@ -765,6 +789,7 @@
   <footer>
     <div>araf@iubat: Thank you for visiting<span class="cursor"></span></div>
     <div>&copy; 2026 Araf Islam Sarkar</div>
+    
   </footer>
 
 </body>
